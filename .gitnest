@@ -1,0 +1,4 @@
+--- 
+vendor/gems/geokit-gem: 
+  branch: dc4-all
+  url: git@github.com:dreamcat4/geokit-gem.git
