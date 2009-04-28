@@ -1,7 +1,19 @@
+# require 'vendor/gems/geokit'
+require 'geokit'
+# include Geokit
+# include Geokit::Geocoders
+
 # Filters added to this controller will be run for all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
+
+  # Auto-geocode the user's ip address and store in the session.
+  geocode_ip_address
+  
+  def geokit
+    @location = session[:geo_location]  # @location is a GeoLoc instance.
+  end
 
   # Don't log any credit card data
   filter_parameter_logging :password, :cc_number, :cc_code, :cc_month, :cc_year
