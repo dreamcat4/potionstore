@@ -1,12 +1,14 @@
 class Order < ActiveRecord::Base
   has_many :line_items
   belongs_to :coupon
+  has_one :ip_location
 
   attr_accessor :cc_code, :cc_month, :cc_year
   attr_accessor :skip_cc_validation
   attr_accessor :email_receipt_when_finishing
   attr_writer :promo_coupons
-
+  # attr_accessor :ip_location
+  
   attr_protected :status, :skip_cc_validation
 
   validates_presence_of :payment_type
@@ -23,6 +25,14 @@ class Order < ActiveRecord::Base
     end
     self.order_time = Time.now()
   end
+
+  # def ip_location
+  #   return @ip_location
+  # end
+  # 
+  # def ip_location=(loc)
+  #   @ip_location = loc
+  # end
 
   def validate
     ## Validate credit card order
