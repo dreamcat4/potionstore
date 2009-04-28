@@ -28,6 +28,10 @@ class LineItem < ActiveRecord::Base
     return round_money(quantity * self.unit_price)
   end
 
+  def vatex_unit_price
+    return round_money( self.unit_price / (1 + TaxTableFactory.uk_vat_rate) )
+  end
+
   def volume_price
     # This is hard coded for now. Modify to suit your needs
     if self.product.code == 'pcm'

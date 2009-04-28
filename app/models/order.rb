@@ -80,6 +80,18 @@ class Order < ActiveRecord::Base
     return round_money(total)
   end
 
+  def vatex_total
+    return round_money(vatex_total_before_applying_coupons() - coupon_amount())
+  end
+
+  def vatex_total_before_applying_coupons
+    vatex_total = 0
+    for item in self.line_items
+        vatex_total = total + item.vatex_total
+    end
+    return round_money(total)
+  end
+
   ## tax and shipping are hard-wired to 0 for now
   def tax_total
     return 0
@@ -92,6 +104,20 @@ class Order < ActiveRecord::Base
   def coupon_amount
     return 0 if coupon == nil
     return coupon.amount if coupon.percentage == nil
+    for item in self.line_items
+      if coupon && coupon.percentage != nil && coupon.product_code == item.product.code
+        return round_money(item.total * coupon.percentage / 100.0)
+      end
+    end
+    if coupon && coupon.percentage != nil && coupon.product_code == 'all'
+      return round_money(total_before_applying_coupons() * (coupon.percentage / 100.0))
+    end
+    return 0
+  end
+
+  def vatex_coupon_amount
+    return 0 if coupon == nil
+    return coupon.amount / (1 + TaxTableFactory.vat_rate) if coupon.percentage == nil
     for item in self.line_items
       if coupon && coupon.percentage != nil && coupon.product_code == item.product.code
         return round_money(item.total * coupon.percentage / 100.0)
