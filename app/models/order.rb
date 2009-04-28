@@ -499,18 +499,46 @@ class Order < ActiveRecord::Base
     end
   end
 
-
   # Google Checkout related methods
   def send_to_google_checkout(edit_cart_url = nil)
     command = $GCHECKOUT_FRONTEND.create_checkout_command
     command.continue_shopping_url = $STORE_PREFS['company_url']
     command.edit_cart_url = edit_cart_url
-
+    
     for line_item in self.line_items
       command.shopping_cart.create_item do |item|
         item.name = line_item.product.name
         item.description = ""
-        item.unit_price = Money.new(line_item.unit_price * 100)
+        
+        ################################################################# 
+        ################################################################# 
+        # `Use 2-digit country code
+        country = ip_location.country_code               
+        # country = 'US'
+        # country = 'UK'
+        # country = 'JP'
+        # country = 'IT'
+        # country = nil
+        if country && !country.empty?
+          eu_countries = TaxTableFactory.eu_countries()
+          eu_customer = false
+          eu_countries.each { | eu_country | 
+           if country.eql? eu_country 
+             eu_customer = true
+           end
+          }
+        else
+          eu_customer = true
+        end
+        
+        if eu_customer 
+          item.unit_price = Money.new(line_item.vatex_unit_price * 100)
+        else
+          item.unit_price = Money.new(line_item.unit_price * 100)
+        end
+        ################################################################# 
+        
+        # item.unit_price = Money.new(line_item.unit_price * 100)
         item.quantity = line_item.quantity
 
         # Force a license key generation here even though the order status is still P.
