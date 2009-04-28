@@ -38,7 +38,7 @@ class Money
   end
   
   self.default_bank = VariableExchangeBank.instance
-  self.default_currency = "USD"
+  self.default_currency = "GBP"
   
   
   # Create a new money object with value 0.
@@ -59,6 +59,11 @@ class Money
   # Creates a new Money object of the given value, using the Euro currency.
   def self.euro(cents)
     Money.new(cents, "EUR")
+  end
+  
+  # Creates a new Money object of the given value, using the UK Pounds currency.
+  def self.euro(cents)
+    Money.new(cents, "GBP")
   end
   
   def self.add_rate(from_currency, to_currency, rate)
@@ -194,6 +199,12 @@ class Money
   # in euro
   def as_euro
     exchange_to("EUR")
+  end
+  
+  # Recieve a money object with the same amount as the current Money object
+  # in uk pounds
+  def as_euro
+    exchange_to("GBP")
   end
   
   # Conversation to self
