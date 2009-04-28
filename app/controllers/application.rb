@@ -54,16 +54,77 @@ if $STORE_PREFS['allow_google_checkout']
 
   $GCHECKOUT_FRONTEND = nil
 
+  # class TaxTableFactory
+  #   def effective_tax_tables_at(time)
+  # 
+  #     tax_free_table = Google4R::Checkout::TaxTable.new(false)
+  #     tax_free_table.name = "default table"
+  #     tax_free_table.create_rule do |rule|
+  #       rule.area = Google4R::Checkout::UsCountryArea.new(Google4R::Checkout::UsCountryArea::ALL)
+  #       rule.rate = 0.0
+  #     end
+  #     return [tax_free_table]
+  #   end
+  # end
   class TaxTableFactory
+    
+    attr_reader :eu_countries
+    
+    def initialize()
+      @eu_countries = [ 'AT', 'BE', 'BG', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', \
+                        'DE', 'GR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', \
+                        'NL', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE', 'GB' ] 
+    end
+    
+    def TaxTableFactory.eu_countries()
+      return TaxTableFactory::new().eu_countries
+    end
+    
+    def eu_countries()
+      return @eu_countries
+    end
+    
+    def TaxTableFactory.uk_vat_rate_at(time)
+      return TaxTableFactory::new().uk_vat_rate_at(time)
+    end
+    
+    def TaxTableFactory.uk_vat_rate()
+      return TaxTableFactory::new().uk_vat_rate()
+    end
+    
+    def uk_vat_rate()
+      return uk_vat_rate_at(Time.new().getutc)
+    end
+    
+    def uk_vat_rate_at(time=time.getutc)
+      # if time > Time.parse("Mon Dec 01 00:00:00 UTC 2008") &&
+        if time < Time.parse("Fri Jan 01 00:00:00 UTC 2010") then
+          uk_vat_rate = 0.15
+        else
+          uk_vat_rate = 0.175
+        end
+        return uk_vat_rate       
+    end
+    
     def effective_tax_tables_at(time)
+      eu_tax_table = Google4R::Checkout::TaxTable.new(false)
+      eu_tax_table.name = "default table"
 
-      tax_free_table = Google4R::Checkout::TaxTable.new(false)
-      tax_free_table.name = "default table"
-      tax_free_table.create_rule do |rule|
-        rule.area = Google4R::Checkout::UsCountryArea.new(Google4R::Checkout::UsCountryArea::ALL)
-        rule.rate = 0.0
+      for eu_country in @eu_countries 
+          eu_tax_table.create_rule do |rule|
+            rule.area = Google4R::Checkout::PostalArea.new(eu_country)
+            rule.rate = self.uk_vat_rate_at(time)
+          end
       end
-      return [tax_free_table]
+      # return [eu_tax_table]
+      
+      # for eu_country in @eu_countries do |eu_rule|
+      #   eu_rule = eu_tax_table.create_rule
+      #   eu_rule.area = Google4R::Checkout::PostalArea.new(eu_country)
+      #   eu_rule.rate = self.uk_vat_rate_at(time)
+      # end
+      
+      return [eu_tax_table]
     end
   end
 

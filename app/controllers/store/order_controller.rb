@@ -83,7 +83,40 @@ class Store::OrderController < ApplicationController
 
     # Handle Google Checkout orders
     elsif params[:payment_type] == 'gcheckout'
-      render :action => 'payment_gcheckout' and return
+      ################################################################# 
+      ################################################################# 
+      # Find the 2-digit country code
+
+      # @order.ip_location = session[:geo_location] 
+      # @order.ip_location = IpLocation.new( session[:geo_location] ) 
+
+      # post = Post.new(:title => "Man bites dog!")
+      @order.ip_location = IpLocation.new( :location => session[:geo_location] ) 
+      
+      # render :action => 'debug_out' and return
+      # render :action => 'debug2' and return
+      render :action => 'debug3' and return
+      # render :action => 'payment_gcheckout' and return
+
+ #      eu_countries = TaxTableFactory.eu_countries()
+ #      # country = it 
+ #      eu_customer = false
+ #      eu_countries.each { | eu_country | 
+ #        if country.eql? eu_country 
+ #          eu_customer = true
+ #        end
+ # }
+ #       if eu_customer 
+ #         # include_vat
+ #         # 10.00 = 8.51 (vat rate 1.175)
+ #         # 10.00 = 8.70 (vat rate 1.150)
+ #         render :action => 'payment_gcheckout_eu'
+ #       else
+ #         render :action => 'payment_gcheckout'
+ #       end
+      ################################################################# 
+      # render :action => 'payment_gcheckout' and return
+      return      
     end
 
     # credit card order
@@ -179,9 +212,27 @@ class Store::OrderController < ApplicationController
       if @order.cc_order?
         render :action => 'payment_cc' and return
       else
+        # errors have occured, redisplay payment page with msg
         render :action => 'payment_gcheckout' and return
+        return
       end
     end
+    
+    # At this point we are all OKAY, and the next step will be to submit the order 
+    ################################################################# 
+    ################################################################# 
+    ################################################################# 
+
+    # @order.location = GeoKit::Geocoders::MaxmindCityGeocoder.geocode(request.remote_ip)
+    # @order.ip_location = session[:geo_location] 
+    # @order.ip_location = IpLocation.new( session[:geo_location] ) 
+
+    # post = Post.new(:title => "Man bites dog!")
+    @order.ip_location = IpLocation.new( :location => session[:geo_location] ) 
+    
+    # render :action => 'debug_out' and return
+    # render :action => 'debug2' and return
+    # render :action => 'debug3' and return
 
     # Actually send out the payload
     if @order.cc_order?
