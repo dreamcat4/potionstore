@@ -2,7 +2,7 @@
 
 # Uncomment below to force Rails into production mode when
 # you don't control web/app server and can't set it the proper way
-# ENV['RAILS_ENV'] ||= 'production'
+ENV['RAILS_ENV'] ||= 'production'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
 #RAILS_GEM_VERSION = '1.1.6'
@@ -27,7 +27,7 @@ Rails::Initializer.run do |config|
   # Use the database for sessions instead of the file system
   # (create the session table with 'rake db:sessions:create')
   # config.action_controller.session_store = :active_record_store
-  config.action_controller.session = { :session_key => "_potion_store_session", :secret => "sdaf0022s94hfdbz32sdjfhf4j-=123sdh" }
+  config.action_controller.session = { :session_key => "_potion_store_session", :secret => "m5s8cdec3660acd642b0f8a32096a404de" }
 
   # Use SQL instead of Active Record's schema dumper when creating the test database.
   # This is necessary if your schema can't be completely dumped by the schema dumper,
@@ -48,6 +48,9 @@ Rails::Initializer.run do |config|
 
   # Gems
   config.gem "google4r-checkout"
+  # config.gem "andre-geokit" 
+  config.gem "andre-geokit", :lib=>'geokit', :source => 'http://gems.github.com'
+  
 end
 
 # Add new inflection rules using the following format

@@ -38,6 +38,7 @@ end
 # Convenience global function to check if we're running in production mode
 def is_live?
   return ENV['RAILS_ENV'] == 'production'
+  # return true
 end
 
 

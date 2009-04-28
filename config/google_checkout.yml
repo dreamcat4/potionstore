@@ -2,15 +2,57 @@
 
 # Get these by logging into Google Checkout's merchant site and the sandbox equivalent
 
+# Sandbox - dreamcat4@gmail.com
+# development:
+#     gcheckout_merchant_id: "449211329243902"
+#     gcheckout_merchant_key: "qjw_jUo58Bbh133FA7h6ow"
+# 
+# test:
+#     gcheckout_merchant_id: "449211329243902"
+#     gcheckout_merchant_key: "qjw_jUo58Bbh133FA7h6ow"
+# 
+# production:
+#     gcheckout_merchant_id: "449211329243902"
+#     gcheckout_merchant_key: "qjw_jUo58Bbh133FA7h6ow"
+
+# Production - dreamcat4@gmail.com
 development:
-  gcheckout_merchant_id: "XXXXXXXXXXXXXXX"
-  gcheckout_merchant_key: "XXXXXXXXXXXXXXXXXXXXXX"
+    gcheckout_merchant_id: "248773242249362"
+    gcheckout_merchant_key: "9nQiUYFrmzITSkw-jjzZOA"
 
 test:
-  gcheckout_merchant_id: "XXXXXXXXXXXXXXX"
-  gcheckout_merchant_key: "XXXXXXXXXXXXXXXXXXXXXX"
+    gcheckout_merchant_id: "248773242249362"
+    gcheckout_merchant_key: "9nQiUYFrmzITSkw-jjzZOA"
 
 production:
-  gcheckout_merchant_id: "XXXXXXXXXXXXXXX"
-  gcheckout_merchant_key: "XXXXXXXXXXXXXXXXXXXXXX"
+    gcheckout_merchant_id: "248773242249362"
+    gcheckout_merchant_key: "9nQiUYFrmzITSkw-jjzZOA"
+
+###################################################
+# dreamcat4.checkout.test@gmail.com
+# development:
+#     gcheckout_merchant_id: "428937558112635"
+#     gcheckout_merchant_key: "dvhpFHqJg8o81j1O2CWUAg"
+# 
+# test:
+#     gcheckout_merchant_id: "428937558112635"
+#     gcheckout_merchant_key: "dvhpFHqJg8o81j1O2CWUAg"
+# 
+# production:
+#     gcheckout_merchant_id: "428937558112635"
+#     gcheckout_merchant_key: "dvhpFHqJg8o81j1O2CWUAg"
+# 
+###################################################
+# sandbox 
+# development:
+#   gcheckout_merchant_id: "XXXXXXXXXXXXXXX"
+#   gcheckout_merchant_key: "XXXXXXXXXXXXXXXXXXXXXX"
+# 
+# test:
+#   gcheckout_merchant_id: "XXXXXXXXXXXXXXX"
+#   gcheckout_merchant_key: "XXXXXXXXXXXXXXXXXXXXXX"
+# 
+# production:
+#   gcheckout_merchant_id: "XXXXXXXXXXXXXXX"
+#   gcheckout_merchant_key: "XXXXXXXXXXXXXXXXXXXXXX"
 
