@@ -1,4 +1,7 @@
 --- 
+vendor/gems/geokit: 
+  branch: dc4-all
+  url: git@github.com:dreamcat4/geokit-gem.git
 vendor/plugins/geokit-rails: 
   branch: dc4-all
   url: git@github.com:dreamcat4/geokit-rails.git

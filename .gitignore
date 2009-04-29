@@ -2,3 +2,4 @@ db/schema.rb
 log
 tmp
 vendor/plugins/geokit-rails
+vendor/gems/geokit
