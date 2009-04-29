@@ -49,7 +49,11 @@ Rails::Initializer.run do |config|
   # Gems
   config.gem "google4r-checkout"
   # config.gem "andre-geokit" 
-  config.gem "andre-geokit", :lib=>'geokit', :source => 'http://gems.github.com'
+  # config.gem "andre-geokit", :lib=>'geokit', :source => 'http://gems.github.com'
+  # config.gem "geokit", :lib=>'geokit', :source => 'http://gems.github.com'
+  # config.gem "geokit", :lib=>'geokit', :version => '1.3.0'
+  config.gem "geokit", :lib=>'geokit'  
+  # config.gem "geokit"
   
 end
 
