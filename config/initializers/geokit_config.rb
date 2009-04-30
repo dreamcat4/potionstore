@@ -65,7 +65,7 @@ if defined? Geokit
 	# Valid symbols are :ip,:geonames,:geo_plugin, and :maxmind_city.
   # As before, make sure you read up on relevant Terms of Use for each
   # Geokit::Geocoders::ip_provider_order = [:geo_plugin,:ip]
-  Geokit::Geocoders::ip_provider_order = [:maxmind_city,:geo_plugin,:ip]
-  # Geokit::Geocoders::ip_provider_order = [:maxmind_city]
+  # Geokit::Geocoders::ip_provider_order = [:maxmind_city,:geo_plugin,:ip]
+  Geokit::Geocoders::ip_provider_order = [:maxmind_city]
 
 end
