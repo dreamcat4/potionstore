@@ -5,6 +5,7 @@ class Store::OrderController < ApplicationController
   before_filter :redirect_to_ssl
 
   def index
+    reset_session
     new
     render :action => 'new'
   end
