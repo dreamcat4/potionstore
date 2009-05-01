@@ -50,8 +50,12 @@ class IpLocation < ActiveRecord::Base
 
     self.lat = loc.lat
     self.lng = loc.lng
-    self.ip_address = loc.ip_address
-    self.isp_detail = loc.isp_detail
+    if defined? loc.ip_address
+      self.ip_address = loc.ip_address
+    end
+    if defined? loc.isp_detail
+      self.isp_detail = loc.isp_detail
+    end
     self.street_address = loc.street_address
     self.city = loc.city
     self.state = loc.state
