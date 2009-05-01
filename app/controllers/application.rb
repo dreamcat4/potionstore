@@ -1,5 +1,7 @@
 # require 'vendor/gems/geokit'
-require 'geokit'
+# require 'geocoders-ext'
+# require 'geokit'
+
 # include Geokit
 # include Geokit::Geocoders
 

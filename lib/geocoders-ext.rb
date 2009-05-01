@@ -2,10 +2,11 @@ require "geokit"
 
 module Geokit
   module Geocoders
+    
     @@maxmind_city = 'REPLACE_WITH_YOUR_MAXMIND_KEY'
     __define_accessors
-
-    # Provides geocoding based upon an IP address.  The underlying web service is maxmind.com
+    
+    # Provide geocoding based upon an IP address.  The underlying web service is maxmind.com.
     # MaxMind City is a paid-for service, provides country, region, and city. Updated every month.
     class MaxmindCityGeocoder < Geocoder 
       
@@ -15,6 +16,7 @@ module Geokit
       # longitude, city, and country code.  Sets the success attribute to false if the ip 
       # parameter does not match an ip address.  
       def self.do_geocode(ip)
+        logger.info "In MaxmindCityGeocoder.do_geocode(ip)"
         return Geoloc.new if '0.0.0.0' == ip
         return GeoLoc.new unless /^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})?$/.match(ip)
         url = "http://geoip1.maxmind.com/f?l=#{Geokit::Geocoders::maxmind_city}&i=#{ip}"
@@ -97,3 +99,4 @@ module Geokit
     end
   end
 end
+

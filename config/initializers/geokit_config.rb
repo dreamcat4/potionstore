@@ -1,5 +1,4 @@
  require 'geokit'
- require "geocoders-ext"
  
 if defined? Geokit
 
@@ -46,13 +45,6 @@ if defined? Geokit
 	# and http://geocoder.ca/?register=1
 	Geokit::Geocoders::geocoder_ca = false
   
-	# This is your authorization key for MaxMind's geoip city web service.
-  # Paid alternative to the free hostip.info ip Geocoder
-	# See http://www.maxmind.com/app/web_services#country 
-	# Set the value to the 12-digit key obtained from MaxMind.
-  # Geokit::Geocoders::maxmind_city = 'REPLACE_WITH_YOUR_MAXMIND_KEY'
-  Geokit::Geocoders::maxmind_city = '2AbwX9KUFnFh'
-  
 	# Uncomment to use a username with the Geonames geocoder
 	#Geokit::Geocoders::geonames="REPLACE_WITH_YOUR_GEONAMES_USERNAME"
 
@@ -64,10 +56,21 @@ if defined? Geokit
 	# geocoder you are going to use.
   Geokit::Geocoders::provider_order = [:yahoo,:google]
 
+  require "geocoders-ext"
+	# This is your authorization key for MaxMind's geoip city web service.
+  # Paid alternative to the free hostip.info ip Geocoder
+	# See http://www.maxmind.com/app/web_services#country 
+	# Set the value to the 12-digit key obtained from MaxMind.
+  # Geokit::Geocoders::maxmind_city = 'REPLACE_WITH_YOUR_MAXMIND_KEY'
+  Geokit::Geocoders::maxmind_city = '2AbwX9KUFnFh'
+  
 	# Valid symbols are :ip,:geonames,:geo_plugin, and :maxmind_city.
   # As before, make sure you read up on relevant Terms of Use for each
+  # Geokit::Geocoders::ip_provider_order = [:ip]
+  # Geokit::Geocoders::ip_provider_order = [:geo_plugin]
+  # Geokit::Geocoders::ip_provider_order = [:maxmind_city]
   # Geokit::Geocoders::ip_provider_order = [:geo_plugin,:ip]
+  Geokit::Geocoders::ip_provider_order = [:maxmind_city,:ip]
   # Geokit::Geocoders::ip_provider_order = [:maxmind_city,:geo_plugin,:ip]
-  Geokit::Geocoders::ip_provider_order = [:maxmind_city]
 
 end
