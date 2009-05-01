@@ -1,4 +1,4 @@
-require 'geokit'
+require "geokit"
 
 module Geokit
   module Geocoders
@@ -10,7 +10,7 @@ module Geokit
     class MaxmindCityGeocoder < Geocoder 
       
       private 
-                
+      
       # Given an IP address, returns a GeoLoc instance which contains latitude,
       # longitude, city, and country code.  Sets the success attribute to false if the ip 
       # parameter does not match an ip address.  
@@ -40,7 +40,11 @@ module Geokit
                        'metro_code' => 6, 'area_code' => 7, 'isp' => 8, 'org' => 9, 'err' => 10 }
         
         res = GeoLoc.new
-        res.ip_address = ip
+        
+        if defined? res.ip_address
+          res.ip_address = ip
+        end
+        
         res.provider = 'maxmind_city'
         
         res.lat = results[ csv_column['lat'] ]
@@ -77,8 +81,10 @@ module Geokit
         org = results[ csv_column['org'] ]
         if org =~ /\A".*"\z/m then org.gsub!(/\A"(.*)"\z/m, '\1') end  # remove double-quotes at string beginning & end
 
-        if ( org.sub(isp,"").eql? org ) && ( isp.sub(org,"").eql? isp ) 
-          res.isp_detail = org
+        if defined? res.isp_detail
+          if ( org.sub(isp,"").eql? org ) && ( isp.sub(org,"").eql? isp ) 
+            res.isp_detail = org
+          end 
         end
         
         # MaxMind-Specific Error (eg "invalid license key")

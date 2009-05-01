@@ -1,4 +1,6 @@
  require 'geokit'
+ require "geocoders-ext"
+ 
 if defined? Geokit
 
 	# These defaults are used in Geokit::Mappable.distance_to and in acts_as_mappable

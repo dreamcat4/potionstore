@@ -49,7 +49,7 @@ Rails::Initializer.run do |config|
   # Gems
   config.gem "google4r-checkout"
   config.gem "geokit"
-  require "geocoders-ext"
+  # require "geocoders-ext"
   
 end
 
