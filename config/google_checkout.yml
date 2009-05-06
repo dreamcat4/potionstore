@@ -3,30 +3,30 @@
 # Get these by logging into Google Checkout's merchant site and the sandbox equivalent
 
 # Sandbox - dreamcat4@gmail.com
-# development:
-#     gcheckout_merchant_id: "449211329243902"
-#     gcheckout_merchant_key: "qjw_jUo58Bbh133FA7h6ow"
-# 
-# test:
-#     gcheckout_merchant_id: "449211329243902"
-#     gcheckout_merchant_key: "qjw_jUo58Bbh133FA7h6ow"
-# 
-# production:
-#     gcheckout_merchant_id: "449211329243902"
-#     gcheckout_merchant_key: "qjw_jUo58Bbh133FA7h6ow"
-
-# Production - dreamcat4@gmail.com
 development:
-    gcheckout_merchant_id: "248773242249362"
-    gcheckout_merchant_key: "9nQiUYFrmzITSkw-jjzZOA"
+    gcheckout_merchant_id: "449211329243902"
+    gcheckout_merchant_key: "qjw_jUo58Bbh133FA7h6ow"
 
 test:
-    gcheckout_merchant_id: "248773242249362"
-    gcheckout_merchant_key: "9nQiUYFrmzITSkw-jjzZOA"
+    gcheckout_merchant_id: "449211329243902"
+    gcheckout_merchant_key: "qjw_jUo58Bbh133FA7h6ow"
 
 production:
-    gcheckout_merchant_id: "248773242249362"
-    gcheckout_merchant_key: "9nQiUYFrmzITSkw-jjzZOA"
+    gcheckout_merchant_id: "449211329243902"
+    gcheckout_merchant_key: "qjw_jUo58Bbh133FA7h6ow"
+
+# Production - dreamcat4@gmail.com
+# development:
+#     gcheckout_merchant_id: "248773242249362"
+#     gcheckout_merchant_key: "9nQiUYFrmzITSkw-jjzZOA"
+# 
+# test:
+#     gcheckout_merchant_id: "248773242249362"
+#     gcheckout_merchant_key: "9nQiUYFrmzITSkw-jjzZOA"
+# 
+# production:
+#     gcheckout_merchant_id: "248773242249362"
+#     gcheckout_merchant_key: "9nQiUYFrmzITSkw-jjzZOA"
 
 ###################################################
 # dreamcat4.checkout.test@gmail.com
