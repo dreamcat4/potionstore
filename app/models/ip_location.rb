@@ -1,4 +1,5 @@
 class IpLocation < ActiveRecord::Base
+  belongs_to :order
 
   # def initialize(loc = GeoLoc.new)
 
