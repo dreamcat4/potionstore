@@ -6,14 +6,17 @@
 development:
     gcheckout_merchant_id: "449211329243902"
     gcheckout_merchant_key: "qjw_jUo58Bbh133FA7h6ow"
+    gcheckout_sandbox: "true"
 
 test:
     gcheckout_merchant_id: "449211329243902"
     gcheckout_merchant_key: "qjw_jUo58Bbh133FA7h6ow"
+    gcheckout_sandbox: "true"
 
 production:
     gcheckout_merchant_id: "449211329243902"
     gcheckout_merchant_key: "qjw_jUo58Bbh133FA7h6ow"
+    gcheckout_sandbox: "true"
 
 # Production - dreamcat4@gmail.com
 # development:
