@@ -23,7 +23,7 @@ class AddGeokit < ActiveRecord::Migration
 
     end 
 
-    add_column :orders, :ip_location_id, :integer
+    # add_column :orders, :ip_location_id, :integer
 
     # add_index :orders, :ip_location_id 
     # add_index :orders, :ip_location_id, :name => "ip_location_id"
@@ -32,7 +32,7 @@ class AddGeokit < ActiveRecord::Migration
 
   def self.down
     
-    remove_column :orders, :ip_location_id
+    # remove_column :orders, :ip_location_id
     drop_table :ip_locations
     
   end
