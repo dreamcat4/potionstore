@@ -16,6 +16,12 @@ class Store::NotificationController < ApplicationController
   def gcheckout
     # Check HTTP basic authentication first
     my_auth_key = Base64.encode64($STORE_PREFS['gcheckout_merchant_id'] + ':' + $STORE_PREFS['gcheckout_merchant_key']).strip()
+    
+    puts "\nREQUEST HEADERS\n"
+      @request.headers.each do |header, value|
+      puts "Header: #{header}\tValue: #{value}"
+    end
+      
     http_auth = String.new()
     # http_auth = request.headers['HTTP_AUTHORIZATION']
     http_auth = request.env['HTTP_AUTHORIZATION']
