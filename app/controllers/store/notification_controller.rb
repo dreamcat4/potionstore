@@ -16,6 +16,7 @@ class Store::NotificationController < ApplicationController
   def gcheckout
     # Check HTTP basic authentication first
     my_auth_key = Base64.encode64($STORE_PREFS['gcheckout_merchant_id'] + ':' + $STORE_PREFS['gcheckout_merchant_key']).strip()
+    http_auth = String.new()
     http_auth = request.headers['HTTP_AUTHORIZATION']
 
     logger.warn('my auth key:')
@@ -23,11 +24,12 @@ class Store::NotificationController < ApplicationController
     logger.warn('my auth key 64:')
     logger.warn(my_auth_key)
 
-    logger.warn('http auth:')
-    logger.warn(request.headers['HTTP_AUTHORIZATION'])
+    logger.warn('http auth:'+http_auth+end)
+    logger.warn('request.headers'+request.headers+end)
+    logger.warn('request.headers[AUTH]'+request.headers['HTTP_AUTHORIZATION']+end)
 
     # if http_auth.nil? || http_auth.split(' ')[0] != 'Basic' || http_auth.split(' ')[1] != my_auth_key then
-    if http_auth && http_auth.split(' ')[0] != 'Basic' && http_auth.split(' ')[1] != my_auth_key then
+    if !http_auth.empty? && http_auth.split(' ')[0] != 'Basic' && http_auth.split(' ')[1] != my_auth_key then
 
       logger.warn('http auth split:')
       logger.warn( http_auth.split(' ')[1] )
