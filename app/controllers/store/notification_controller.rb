@@ -18,15 +18,18 @@ class Store::NotificationController < ApplicationController
     my_auth_key = Base64.encode64($STORE_PREFS['gcheckout_merchant_id'] + ':' + $STORE_PREFS['gcheckout_merchant_key']).strip()
     http_auth = String.new()
     # http_auth = request.headers['HTTP_AUTHORIZATION']
-    http_auth = request.headers['Authorization']
-
+    http_auth = request.env['HTTP_AUTHORIZATION']
+    # http_auth = request.headers['Authorization']
+    # http_auth = request['Authorization']
     logger.warn('my auth key:')
     logger.warn($STORE_PREFS['gcheckout_merchant_id'] + ':' + $STORE_PREFS['gcheckout_merchant_key'])
     logger.warn('my auth key 64:')
     logger.warn(my_auth_key)
 
     logger.warn('http auth:'+"#{http_auth}"+'end')
-    logger.warn('request.headers'+"#{request.headers}"+'end')
+    logger.warn('request.headers'+"#{request.headers.to_s}"+'end')
+    logger.warn('request.headers'+"#{request.env.to_s}"+'end')
+    logger.warn('request.headers'+"#{request.to_s}"+'end')
     # logger.warn('request.headers[AUTH]'+request.headers['HTTP_AUTHORIZATION']+'end')
 
     # if http_auth.nil? || http_auth.split(' ')[0] != 'Basic' || http_auth.split(' ')[1] != my_auth_key then
