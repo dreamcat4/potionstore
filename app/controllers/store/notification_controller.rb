@@ -25,9 +25,9 @@ class Store::NotificationController < ApplicationController
     logger.warn('my auth key 64:')
     logger.warn(my_auth_key)
 
-    logger.warn('http auth:'+'#{http_auth}'+'end')
-    logger.warn('request.headers'+request.headers+'end')
-    logger.warn('request.headers[AUTH]'+request.headers['HTTP_AUTHORIZATION']+'end')
+    logger.warn('http auth:'+"#{http_auth}"+'end')
+    logger.warn('request.headers'+"#{request.headers}"+'end')
+    # logger.warn('request.headers[AUTH]'+request.headers['HTTP_AUTHORIZATION']+'end')
 
     # if http_auth.nil? || http_auth.split(' ')[0] != 'Basic' || http_auth.split(' ')[1] != my_auth_key then
     if !http_auth.empty? && http_auth.split(' ')[0] != 'Basic' && http_auth.split(' ')[1] != my_auth_key then
