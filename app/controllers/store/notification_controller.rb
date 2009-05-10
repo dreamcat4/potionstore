@@ -10,7 +10,9 @@ end
 
 
 class Store::NotificationController < ApplicationController
-
+  
+  after_filter CustomLoggerFilter
+  
   ## Google Checkout notification
 
   def gcheckout
