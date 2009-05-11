@@ -39,7 +39,7 @@ class Store::NotificationController < ApplicationController
     logger.warn('request.headers'+"#{request.env.to_s}"+'end')
     logger.warn('request.headers'+"#{request.to_s}"+'end')
     # logger.warn('request.headers[AUTH]'+request.headers['HTTP_AUTHORIZATION']+'end')
-    render :text => '', and return
+    render :text => '', :status => 401 and return
 
     # if http_auth.nil? || http_auth.split(' ')[0] != 'Basic' || http_auth.split(' ')[1] != my_auth_key then
     if !http_auth.empty? && http_auth.split(' ')[0] != 'Basic' && http_auth.split(' ')[1] != my_auth_key then
