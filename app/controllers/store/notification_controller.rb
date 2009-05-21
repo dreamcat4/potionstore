@@ -39,7 +39,7 @@ class Store::NotificationController < ApplicationController
     logger.warn('request.headers'+"#{request.env.to_s}"+'end')
     logger.warn('request.headers'+"#{request.to_s}"+'end')
     # logger.warn('request.headers[AUTH]'+request.headers['HTTP_AUTHORIZATION']+'end')
-    render :text => '', :status => 401 and return
+    # render :text => '', :status => 401 and return
 
     # if http_auth.nil? || http_auth.split(' ')[0] != 'Basic' || http_auth.split(' ')[1] != my_auth_key then
     if !http_auth.empty? && http_auth.split(' ')[0] != 'Basic' && http_auth.split(' ')[1] != my_auth_key then
@@ -58,8 +58,7 @@ class Store::NotificationController < ApplicationController
     notification_name = notification.keys[0]
     notification_data = notification[notification_name]
     
-    logger.warn('notification_name')
-    logger.warn( notification_name )
+    logger.warn("notification_name = #{notification_name}")
 
     case notification_name
     when 'new-order-notification'
