@@ -70,7 +70,7 @@ if defined? Geokit
   # Geokit::Geocoders::ip_provider_order = [:geo_plugin]
   # Geokit::Geocoders::ip_provider_order = [:maxmind_city]
   # Geokit::Geocoders::ip_provider_order = [:geo_plugin,:ip]
-  Geokit::Geocoders::ip_provider_order = [:maxmind_city,:ip]
   # Geokit::Geocoders::ip_provider_order = [:maxmind_city,:geo_plugin,:ip]
+  Geokit::Geocoders::ip_provider_order = [:maxmind_city,:geo_plugin_dc4,:ip_dc4]
 
 end

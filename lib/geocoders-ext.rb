@@ -97,6 +97,78 @@ module Geokit
         return res
       end
     end
+
+    # Provides geocoding based upon an IP address.  The underlying web service is geoplugin.net
+    class GeoPluginDc4Geocoder < Geocoder
+      private
+      
+      def self.do_geocode(ip)
+        return GeoLoc.new unless /^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})?$/.match(ip)
+        response = self.call_geocoder_service("http://www.geoplugin.net/xml.gp?ip=#{ip}")
+        return response.is_a?(Net::HTTPSuccess) ? parse_xml(response.body, ip) : GeoLoc.new
+      rescue
+        logger.error "Caught an error during GeoPluginGeocoder geocoding call: "+$!
+        return GeoLoc.new
+      end
+
+      def self.parse_xml(xml, ip)
+        xml = REXML::Document.new(xml)
+        geo = GeoLoc.new
+        geo.ip_address = ip
+        geo.provider='geoPlugin'
+        geo.city = xml.elements['//geoplugin_city'].text
+        geo.state = xml.elements['//geoplugin_region'].text
+        geo.country_code = xml.elements['//geoplugin_countryCode'].text
+        geo.lat = xml.elements['//geoplugin_latitude'].text.to_f
+        geo.lng = xml.elements['//geoplugin_longitude'].text.to_f
+        geo.success = !geo.country_code.empty?
+        # geo.success = false        
+        return geo
+      end
+    end
+
+    class IpDc4Geocoder < Geocoder 
+
+      private 
+
+      # Given an IP address, returns a GeoLoc instance which contains latitude,
+      # longitude, city, and country code.  Sets the success attribute to false if the ip 
+      # parameter does not match an ip address.  
+      def self.do_geocode(ip)
+        return GeoLoc.new if '0.0.0.0' == ip
+        return GeoLoc.new unless /^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})?$/.match(ip)
+        url = "http://api.hostip.info/get_html.php?ip=#{ip}&position=true"
+        response = self.call_geocoder_service(url)
+        response.is_a?(Net::HTTPSuccess) ? parse_body(response.body,ip) : GeoLoc.new
+      rescue
+        logger.error "Caught an error during HostIp geocoding call: "+$!
+        return GeoLoc.new
+      end
+
+      # Converts the body to YAML since its in the form of:
+      #
+      # Country: UNITED STATES (US)
+      # City: Sugar Grove, IL
+      # Latitude: 41.7696
+      # Longitude: -88.4588
+      #
+      # then instantiates a GeoLoc instance to populate with location data.
+      def self.parse_body(body, ip) # :nodoc:
+        yaml = YAML.load(body)
+        res = GeoLoc.new
+        res.ip_address = ip
+        res.provider = 'hostip'
+        res.city, res.state = yaml['City'].split(', ')
+        country, res.country_code = yaml['Country'].split(' (')
+        res.lat = yaml['Latitude'] 
+        res.lng = yaml['Longitude']
+        res.country_code.chop!
+        res.success = !res.country_code.empty?
+        # res.success = false
+        return res
+      end
+    end
+
   end
 end
 
