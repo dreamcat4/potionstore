@@ -15,6 +15,8 @@ class Store::NotificationController < ApplicationController
   ## Google Checkout notification
 
   def gcheckout
+    # https://secure.dreamcatfour.ath.cx/store/notification/gcheckout
+    
     # Check HTTP basic authentication first
     my_auth_key = Base64.encode64($STORE_PREFS['gcheckout_merchant_id'] + ':' + $STORE_PREFS['gcheckout_merchant_key']).strip()
     http_auth = request.headers['HTTP_AUTHORIZATION']
