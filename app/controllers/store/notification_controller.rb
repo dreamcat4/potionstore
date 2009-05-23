@@ -17,14 +17,14 @@ class Store::NotificationController < ApplicationController
   ## Google Checkout notification
 
   def gcheckout
+    logger.warn("")
+    logger.warn("#{Date.new.to_s}")
     # Check HTTP basic authentication first
-    my_auth_key = Base64.encode64($STORE_PREFS['gcheckout_merchant_id'] + ':' + $STORE_PREFS['gcheckout_merchant_key']).strip()
-    
+    my_auth_key = Base64.encode64($STORE_PREFS['gcheckout_merchant_id'] + ':' + $STORE_PREFS['gcheckout_merchant_key']).strip()    
     # logger.warn "\nREQUEST HEADERS\n"
     #   request.headers.each do |header, value|
     #   logger.warn "Header: #{header}\tValue: #{value}"
     # end
-    
     http_auth = String.new()
     # http_auth = request.headers['HTTP_AUTHORIZATION']
     http_auth = request.env['HTTP_AUTHORIZATION']
@@ -37,6 +37,11 @@ class Store::NotificationController < ApplicationController
     logger.warn("XXXXXXXXXXXXXXXXXXX")
     logger.warn("XXXXXXXXXXXXXXXXXXX")
     logger.warn("XXXXXXXXXXXXXXXXXXX")
+    logger.warn "\nREQUEST HEADERS\n"
+      request.headers.each do |header, value|
+      logger.warn "#{header}: #{value}"
+    end
+    logger.warn("")
     logger.warn("#{request.raw_post}")
     logger.warn("XXXXXXXXXXXXXXXXXXX")
     logger.warn("XXXXXXXXXXXXXXXXXXX")
