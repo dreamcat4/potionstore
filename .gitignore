@@ -3,3 +3,4 @@ log
 tmp
 vendor/plugins/geokit-rails
 vendor/gems/geokit
+vendor/gems/sinatra
