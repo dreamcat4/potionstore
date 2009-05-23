@@ -49,8 +49,18 @@ Rails::Initializer.run do |config|
   # Gems
   config.gem "google4r-checkout"
   config.gem "geokit"
+  config.gem "sinatra"
   
 end
+
+# Remove trailing slash from URIs reaching Sinatra
+before { request.env['PATH_INFO'].gsub!(/\/$/, '') if request.env['PATH_INFO'] != '/' }
+
+# # Checking AR Connections back to the pool
+# after { ActiveRecord::Base.clear_active_connections! }
+
+# Preload controllers with Sinatra code
+# require 'api_controller'
 
 # Add new inflection rules using the following format
 # (all these examples are active by default):
