@@ -34,6 +34,13 @@ class Store::NotificationController < ApplicationController
     # logger.warn($STORE_PREFS['gcheckout_merchant_id'] + ':' + $STORE_PREFS['gcheckout_merchant_key'])
     # logger.warn('my auth key 64:')
     # logger.warn(my_auth_key)
+    logger.warn("XXXXXXXXXXXXXXXXXXX")
+    logger.warn("XXXXXXXXXXXXXXXXXXX")
+    logger.warn("XXXXXXXXXXXXXXXXXXX")
+    logger.warn("#{request.raw_post}")
+    logger.warn("XXXXXXXXXXXXXXXXXXX")
+    logger.warn("XXXXXXXXXXXXXXXXXXX")
+    logger.warn("XXXXXXXXXXXXXXXXXXX")
 
     # logger.warn('http auth:'+"#{http_auth}"+'end')
     # logger.warn('request.headers'+"#{request.headers.to_s}"+'end')
