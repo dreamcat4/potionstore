@@ -20,25 +20,25 @@ class Store::NotificationController < ApplicationController
     # Check HTTP basic authentication first
     my_auth_key = Base64.encode64($STORE_PREFS['gcheckout_merchant_id'] + ':' + $STORE_PREFS['gcheckout_merchant_key']).strip()
     
-    logger.warn "\nREQUEST HEADERS\n"
-      request.headers.each do |header, value|
-      logger.warn "Header: #{header}\tValue: #{value}"
-    end
+    # logger.warn "\nREQUEST HEADERS\n"
+    #   request.headers.each do |header, value|
+    #   logger.warn "Header: #{header}\tValue: #{value}"
+    # end
     
     http_auth = String.new()
     # http_auth = request.headers['HTTP_AUTHORIZATION']
     http_auth = request.env['HTTP_AUTHORIZATION']
     # http_auth = request.headers['Authorization']
     # http_auth = request['Authorization']
-    logger.warn('my auth key:')
-    logger.warn($STORE_PREFS['gcheckout_merchant_id'] + ':' + $STORE_PREFS['gcheckout_merchant_key'])
-    logger.warn('my auth key 64:')
-    logger.warn(my_auth_key)
+    # logger.warn('my auth key:')
+    # logger.warn($STORE_PREFS['gcheckout_merchant_id'] + ':' + $STORE_PREFS['gcheckout_merchant_key'])
+    # logger.warn('my auth key 64:')
+    # logger.warn(my_auth_key)
 
-    logger.warn('http auth:'+"#{http_auth}"+'end')
-    logger.warn('request.headers'+"#{request.headers.to_s}"+'end')
-    logger.warn('request.headers'+"#{request.env.to_s}"+'end')
-    logger.warn('request.headers'+"#{request.to_s}"+'end')
+    # logger.warn('http auth:'+"#{http_auth}"+'end')
+    # logger.warn('request.headers'+"#{request.headers.to_s}"+'end')
+    # logger.warn('request.headers'+"#{request.env.to_s}"+'end')
+    # logger.warn('request.headers'+"#{request.to_s}"+'end')
     # logger.warn('request.headers[AUTH]'+request.headers['HTTP_AUTHORIZATION']+'end')
     # render :text => '', :status => 401 and return
 
