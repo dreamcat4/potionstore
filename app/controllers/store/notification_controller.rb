@@ -1,4 +1,5 @@
 require 'base64'
+require 'xmlsimple'
 
 def _xmlval(hash, key)
   if hash[key] == {}
