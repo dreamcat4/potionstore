@@ -49,9 +49,13 @@ Rails::Initializer.run do |config|
   # Gems
   config.gem "google4r-checkout"
   config.gem "geokit"
+  config.gem "libxml-bindings"
   config.gem "sinatra"
   
 end
+
+# Set directories to look for sinatra 
+# set :views, "#{RAILS_ROOT}" + '/templates'
 
 # Remove trailing slash from URIs reaching Sinatra
 before { request.env['PATH_INFO'].gsub!(/\/$/, '') if request.env['PATH_INFO'] != '/' }
