@@ -12,18 +12,73 @@ class NilClass
 end
 
 class Qbwc::ApiController < ApplicationController
+  layout "admin"
+
+  before_filter :redirect_to_ssl
+
+  # alias_method :bytesize, :size
+  
   get '/qbwc/lorem' do
     # return "Home page - qbwc api"
     return "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
     
   end
 
-  get '/qbwc/api/request' do
-    return "xml response"
+  get '/qbwc/api/error' do
+    @message = 'An error occurred'
+    puts "#{erb :getLastError}"
+    erb :getLastError
   end
 
-  def new
+  # get '/qbwc/orders/:query' do
+  get '/qbwc/orders' do
+    @message = 'Orders'
+
+    q = params[:query]
+    conditions = "(status='C' OR status='X' OR status='F')"
+    if q
+      q = q.strip().downcase()
+      if q.to_i != 0
+        conditions = [conditions + "AND id=?", q.to_i]
+        # @order = Order.find(q)
+        # puts @order.to_xml
+        # @message = @order.to_xml
+        # return
+      else
+        conditions = [conditions + " AND (LOWER(email) LIKE ? OR
+                                          LOWER(first_name) LIKE ? OR
+                                          LOWER(last_name) LIKE ? OR
+                                          LOWER(licensee_name) LIKE ?)", "#{q}%", "#{q}%", "#{q}%", "%#{q}%"]
+      end
+    end
+    # @orders = Order.paginate :page => (params[:page] || 1), :per_page => 100, :conditions => conditions, :order => 'order_time DESC'
+    # @orders = Order.paginate :page => 1
+
   end
+
+  get '/qbwc/hello/:name' do
+    # matches "GET /hello/foo" and "GET /hello/bar"
+    # params[:name] is 'foo' or 'bar'
+    "Hello #{params[:name]}!"
+  end
+  
+  # GET /orders/1
+  # GET /orders/1.xml
+  get '/qbwc/order/:id' do
+    @order = Order.find(params[:id])
+    puts @order.to_xml
+    # @message = @order
+
+    # respond_to do |format|
+    #   format.html # show.rhtml
+    #   format.xml  { render :xml => @order.to_xml }
+    # end
+    @message = @order.to_xml
+    
+  end
+  
+  # def new
+  # end
 
   post '/qbwc/api' do
     content_type 'text/xml'
