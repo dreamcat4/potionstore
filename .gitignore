@@ -5,4 +5,4 @@ vendor/plugins/geokit-rails
 vendor/gems/geokit
 vendor/gems/sinatra
 vendor/plugins/acts_as_quickbooks_model
-vendor/gems/libxml-bindings
+vendor/gems/libxml-bindings-0.1.2
