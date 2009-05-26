@@ -1,5 +1,10 @@
+# require 'rubygems'
+# require 'sinatra'
+require 'hpricot'
+require 'fast_xs' # http server - "fast escaping" ?
+
 class Qbwc::ApiController < ApplicationController
-  get '/qbwc/api' do
+  get '/qbwc/lorem' do
     # return "Home page - qbwc api"
     return "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
     
@@ -12,6 +17,60 @@ class Qbwc::ApiController < ApplicationController
   def new
   end
 
+  post '/qbwc/api' do
+    content_type 'text/xml'
+
+    payload = Hpricot.uxs(request.body.read)
+    doc = Hpricot.XML(payload)
+    api_call = doc.containers[0].containers[0].containers[0].name.split(':').last
+
+    # log request
+    puts ''
+    puts "========== #{api_call}  =========="
+    puts payload
+
+    case api_call
+    when 'serverVersion'
+      erb :serverVersion
+    when 'clientVersion'
+      erb :clientVersion
+    when 'authenticate'
+      @token = 'abc123'
+      erb :authenticate
+    when 'sendRequestXML'
+      @qbxml = <<-XML
+  <?xml version="1.0" ?>
+  <?qbxml version="5.0" ?>
+  <QBXML>
+    <QBXMLMsgsRq onError="continueOnError">
+      <CustomerQueryRq requestID="1">
+        <MaxReturned>10</MaxReturned>
+        <IncludeRetElement>Name</IncludeRetElement>
+      </CustomerQueryRq>
+    </QBXMLMsgsRq>
+  </QBXML>
+  XML
+      erb :sendRequestXML
+    when 'receiveResponseXML'
+      (doc/'CustomerRet').each do |node|
+        puts "Customer: #{node.innerText.strip}"
+      end
+      @result = 100
+      erb :receiveResponseXML
+    when 'getLastError'
+      @message = 'An error occurred'
+      erb :getLastError
+    when 'connectionError'
+      @message = 'done'
+      erb :connectionError
+    when 'closeConnection'
+      @message = 'OK'
+      erb :closeConnection
+    else
+      ''
+    end
+  end
+  
 end
 
 # class SiteController < ApplicationController
