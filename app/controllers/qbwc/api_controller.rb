@@ -3,6 +3,14 @@
 require 'hpricot'
 require 'fast_xs' # http server - "fast escaping" ?
 
+set :views, "#{RAILS_ROOT}" + '/app/views/sinatra/qbwc'
+
+class NilClass
+  def fast_xs
+    ''
+  end
+end
+
 class Qbwc::ApiController < ApplicationController
   get '/qbwc/lorem' do
     # return "Home page - qbwc api"
