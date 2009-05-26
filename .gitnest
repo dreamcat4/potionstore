@@ -2,6 +2,9 @@
 vendor/gems/geokit: 
   branch: dc4-all
   url: git@github.com:dreamcat4/geokit-gem.git
+vendor/gems/libxml-ruby-dc4: 
+  branch: master
+  url: git@github.com:dreamcat4/libxml-ruby-dc4.git
 vendor/gems/sinatra: 
   branch: master
   url: git@github.com:dreamcat4/sinatra.git
