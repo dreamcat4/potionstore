@@ -4,3 +4,4 @@ tmp
 vendor/plugins/geokit-rails
 vendor/gems/geokit
 vendor/gems/sinatra
+vendor/plugins/acts_as_quickbooks_model
