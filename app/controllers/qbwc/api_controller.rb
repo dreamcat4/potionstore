@@ -32,10 +32,10 @@ class Qbwc::ApiController < ApplicationController
   get '/qbwc/orders' do
     # @message = 'Orders'
     
-    test_string = String.new()
-    test_string = "Hi! i am a string of artritrary length and size :)"
-    html = "#{test_string}<br>bytesize=#{test_string.bytesize}"
-    return html
+    # test_string = String.new()
+    # test_string = "Hi! i am a string of artritrary length and size :)"
+    # html = "#{test_string}<br>bytesize=#{test_string.bytesize}"
+    # return html
     
     q = params[:query]
     conditions = "(status='C' OR status='X' OR status='F')"
@@ -55,7 +55,7 @@ class Qbwc::ApiController < ApplicationController
       end
     end
     # @orders = Order.paginate :page => (params[:page] || 1), :per_page => 100, :conditions => conditions, :order => 'order_time DESC'
-    @orders = Order.paginate :page => 1
+    # @orders = Order.paginate :page => 1
 
   end
 
