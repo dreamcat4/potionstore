@@ -16,8 +16,6 @@ class Qbwc::ApiController < ApplicationController
 
   before_filter :redirect_to_ssl
 
-  # alias_method :bytesize, :size
-  
   get '/qbwc/lorem' do
     # return "Home page - qbwc api"
     return "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
@@ -32,8 +30,13 @@ class Qbwc::ApiController < ApplicationController
 
   # get '/qbwc/orders/:query' do
   get '/qbwc/orders' do
-    @message = 'Orders'
-
+    # @message = 'Orders'
+    
+    test_string = String.new()
+    test_string = "Hi! i am a string of artritrary length and size :)"
+    html = "#{test_string}<br>bytesize=#{test_string.bytesize}"
+    return html
+    
     q = params[:query]
     conditions = "(status='C' OR status='X' OR status='F')"
     if q
@@ -52,7 +55,7 @@ class Qbwc::ApiController < ApplicationController
       end
     end
     # @orders = Order.paginate :page => (params[:page] || 1), :per_page => 100, :conditions => conditions, :order => 'order_time DESC'
-    # @orders = Order.paginate :page => 1
+    @orders = Order.paginate :page => 1
 
   end
 
