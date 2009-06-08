@@ -633,7 +633,8 @@ module Google4R #:nodoc:
           when 'coupon-adjustment' then
             COUPON
           else
-            raise ArgumentError, "Invalid tag name: #{element.name} in \n—-\n#{element.to_s}\n—-."
+            # raise ArgumentError, "Invalid tag name: #{element.name} in \n—-\n#{element.to_s}\n—-."
+            raise ArgumentError, "Invalid tag name"
           end
         
         result.code = element.elements['code'].text
