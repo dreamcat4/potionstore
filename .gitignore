@@ -6,3 +6,4 @@ vendor/gems/geokit
 vendor/gems/sinatra
 vendor/gems/libxml-bindings-0.1.2
 vendor/plugins/potion_extra
+vendor/rails

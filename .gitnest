@@ -14,3 +14,6 @@ vendor/plugins/geokit-rails:
 vendor/plugins/potion_extra: 
   branch: master
   url: git@github.com:dreamcat4/potion_extra.git
+vendor/rails: 
+  branch: enumerable-sum-ruby-1.9
+  url: git@github.com:dreamcat4/rails.git
