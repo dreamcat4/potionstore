@@ -64,7 +64,7 @@ before { request.env['PATH_INFO'].gsub!(/\/$/, '') if request.env['PATH_INFO'] !
 # after { ActiveRecord::Base.clear_active_connections! }
 
 # Preload controllers with Sinatra code
-require "qbwc/api_controller.rb"
+require "vendor/plugins/potion_extra/app/controllers/qbwc_api_controller.rb"
 
 # Add new inflection rules using the following format
 # (all these examples are active by default):
