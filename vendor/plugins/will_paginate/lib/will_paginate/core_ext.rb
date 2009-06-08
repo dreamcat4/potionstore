@@ -1,7 +1,18 @@
-require 'will_paginate'
 require 'set'
+require 'will_paginate/array'
 
-unless Hash.instance_methods.include? 'except'
+# helper to check for method existance in ruby 1.8- and 1.9-compatible way
+# because `methods`, `instance_methods` and others return strings in 1.8 and symbols in 1.9
+#
+#   ['foo', 'bar'].include_method?(:foo) # => true
+class Array
+  def include_method?(name)
+    name = name.to_sym
+    !!(find { |item| item.to_sym == name })
+  end
+end
+
+unless Hash.instance_methods.include_method? :except
   Hash.class_eval do
     # Returns a new hash without the given keys.
     def except(*keys)
@@ -16,7 +27,7 @@ unless Hash.instance_methods.include? 'except'
   end
 end
 
-unless Hash.instance_methods.include? 'slice'
+unless Hash.instance_methods.include_method? :slice
   Hash.class_eval do
     # Returns a new hash with only the given keys.
     def slice(*keys)
@@ -27,36 +38,6 @@ unless Hash.instance_methods.include? 'slice'
     # Replaces the hash with only the given keys.
     def slice!(*keys)
       replace(slice(*keys))
-    end
-  end
-end
-
-require 'will_paginate/collection'
-
-unless Array.instance_methods.include? 'paginate'
-  # http://www.desimcadam.com/archives/8
-  Array.class_eval do
-    def paginate(options_or_page = {}, per_page = nil)
-      if options_or_page.nil? or Fixnum === options_or_page
-        if defined? WillPaginate::Deprecation
-          WillPaginate::Deprecation.warn <<-DEPR
-            Array#paginate now conforms to the main, ActiveRecord::Base#paginate API.  You should \
-            call it with a parameters hash (:page, :per_page).  The old API (numbers as arguments) \
-            has been deprecated and is going to be unsupported in future versions of will_paginate.
-          DEPR
-        end
-        page = options_or_page
-        options = {}
-      else
-        options = options_or_page
-        page = options[:page]
-        raise ArgumentError, "wrong number of arguments (1 hash or 2 Fixnums expected)" if per_page
-        per_page = options[:per_page]
-      end
-
-      WillPaginate::Collection.create(page || 1, per_page || 30, options[:total_entries] || size) do |pager|
-        pager.replace self[pager.offset, pager.per_page].to_a
-      end
     end
   end
 end
