@@ -1,5 +1,4 @@
 require ::File.dirname(__FILE__) + '/config/environment'
-require 'thin'
 
 app = Rack::Builder.new {
   use Rack::CommonLogger
