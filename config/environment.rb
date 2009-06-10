@@ -48,12 +48,10 @@ Rails::Initializer.run do |config|
 
   # Gems
   config.gem "google4r-checkout"
-  config.gem "geokit"
-    
-  # config.gem "potion-extra"
+
   require "potion-extra"
-  potion_extra_in_config.call(config)
-  
+  PotionExtra.in_config.call(config)
+
 end
 
 # Add new inflection rules using the following format
@@ -66,4 +64,4 @@ end
 # end
 
 # Include your application configuration below
-potion_extra_end_config.call
+PotionExtra.end_config.call
