@@ -1,6 +1,5 @@
 db/schema.rb
 log
 tmp
-vendor/plugins/geokit-rails
 vendor/rails
 potion-extra
