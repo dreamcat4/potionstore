@@ -49,22 +49,13 @@ Rails::Initializer.run do |config|
   # Gems
   config.gem "google4r-checkout"
   config.gem "geokit"
-  config.gem "libxml-bindings"
   config.gem "sinatra"
+    
+  # config.gem "potion-extra"
+  require "potion-extra"
+  potion_extra_in_config.call(config)
   
 end
-
-# Set directories to look for sinatra 
-# set :views, "#{RAILS_ROOT}" + '/templates'
-
-# Remove trailing slash from URIs reaching Sinatra
-before { request.env['PATH_INFO'].gsub!(/\/$/, '') if request.env['PATH_INFO'] != '/' }
-
-# # Checking AR Connections back to the pool
-# after { ActiveRecord::Base.clear_active_connections! }
-
-# Preload controllers with Sinatra code
-require "vendor/plugins/potion_extra/app/controllers/qbwc_api_controller.rb"
 
 # Add new inflection rules using the following format
 # (all these examples are active by default):
@@ -76,3 +67,4 @@ require "vendor/plugins/potion_extra/app/controllers/qbwc_api_controller.rb"
 # end
 
 # Include your application configuration below
+potion_extra_end_config.call
