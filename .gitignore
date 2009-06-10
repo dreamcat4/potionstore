@@ -4,3 +4,4 @@ tmp
 vendor/plugins/geokit-rails
 vendor/gems/geokit
 vendor/rails
+vendor/gems-src/potion-extra
