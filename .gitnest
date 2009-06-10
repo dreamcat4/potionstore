@@ -2,9 +2,6 @@
 vendor/gems/geokit: 
   branch: dc4-all
   url: git@github.com:dreamcat4/geokit-gem.git
-vendor/gems/libxml-bindings-0.1.2: 
-  branch: master
-  url: git@github.com:dreamcat4/libxml-bindings.git
 vendor/gems/sinatra: 
   branch: master
   url: git@github.com:dreamcat4/sinatra.git
