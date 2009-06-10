@@ -49,7 +49,6 @@ Rails::Initializer.run do |config|
   # Gems
   config.gem "google4r-checkout"
   config.gem "geokit"
-  config.gem "sinatra"
     
   # config.gem "potion-extra"
   require "potion-extra"
