@@ -2,9 +2,6 @@
 vendor/gems/geokit: 
   branch: dc4-all
   url: git@github.com:dreamcat4/geokit-gem.git
-vendor/gems/sinatra: 
-  branch: master
-  url: git@github.com:dreamcat4/sinatra.git
 vendor/plugins/geokit-rails: 
   branch: dc4-all
   url: git@github.com:dreamcat4/geokit-rails.git
