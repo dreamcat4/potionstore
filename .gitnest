@@ -1,4 +1,7 @@
 --- 
+potion-extra: 
+  branch: master
+  url: git@github.com:dreamcat4/potion-extra.git
 vendor/gems/geokit: 
   branch: dc4-all
   url: git@github.com:dreamcat4/geokit-gem.git
