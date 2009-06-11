@@ -3,5 +3,5 @@ potion-extra:
   branch: master
   url: git@github.com:dreamcat4/potion-extra.git
 vendor/rails: 
-  branch: enumerable-sum-ruby-1.9
+  branch: dc4-all
   url: git@github.com:dreamcat4/rails.git
