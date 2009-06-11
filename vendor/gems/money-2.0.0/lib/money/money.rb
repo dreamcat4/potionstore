@@ -203,7 +203,7 @@ class Money
   
   # Recieve a money object with the same amount as the current Money object
   # in uk pounds
-  def as_euro
+  def as_gbp
     exchange_to("GBP")
   end
   

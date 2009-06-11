@@ -11,8 +11,7 @@ def random_chars_of_length(len)
 end
 
 def make_license(product_code, name, copies)
-  # license = product_code.upcase() + '-' + random_chars_of_length(16)
-  license = product_code.upcase() + '-' + "LICENSE_KEY"
+  license = product_code.upcase() + '-' + random_chars_of_length(16)
   return license
 end
 
