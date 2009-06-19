@@ -1,5 +1,5 @@
 dependency 'google4r-checkout'
 dependency 'geokit'
-dependency 'libxml-bindings'
+# dependency 'libxml-bindings'
 dependency 'sinatra'
-dependency 'uuidtools'
+# dependency 'uuidtools'
