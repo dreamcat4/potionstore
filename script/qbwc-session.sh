@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Kill previous instance of server from last session
+
 echo "" > "log/QWCLog.txt"
 
 if [ "$?" ]; then
@@ -18,16 +20,13 @@ if [ "$?" ]; then
 	sleep 4
 	vmrun-cmd ~/.vmware/winxp.vmx "C:\Documents and Settings\Administrator\Desktop\qbwc_update_all.exe"
 	# wait 2 seconds
-	# kill / shutdown thin server 
+	# (optional) kill / shutdown server after session
 	
 else
-	# Try start vmware fusion or
-	# Try mount /Volumes/XP Desktop (smbcontrol anonymous)
-	# or Exit
+	# Fail and Exit
 fi
 
 # Switch on the existence of a file
-#####################################################
 LOCK=/var/run/tunnel-keepalive.pid
 echo $$ >LOCK # $$ expands to the process ID of the currently running script.
 

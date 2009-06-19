@@ -15,9 +15,17 @@
 # 11. Click on "Download Certificate." and save to locations in client_key and client_cert
 
 # Test settings
+# development:
+#   api_username: "XXXXXXXXXXXXXXXXXXXXXXXXXXX"
+#   api_password: "XXXXXXXXXXXXXXXX"
+#   client_cert: "certs/sandbox_api.crt"
+#   client_keys: "certs/sandbox_api.key"
+#   wiredump: true # Turn on logging of communications with PayPal during development
+
+# paypal@dreamcat4.ath.cx PayPal sandbox
 development:
-  api_username: "XXXXXXXXXXXXXXXXXXXXXXXXXXX"
-  api_password: "XXXXXXXXXXXXXXXX"
+  api_username: "ps_uk_wpp_api1.dreamcat4.ath.cx"
+  api_password: "DQ5RZUB65ES5KNSJ"
   client_cert: "certs/sandbox_api.crt"
   client_keys: "certs/sandbox_api.key"
   wiredump: true # Turn on logging of communications with PayPal during development
@@ -26,11 +34,20 @@ development:
 # NOTE: Your PayPal account must have Website Payments Pro already for this to work.
 
 # Live settings
+# production:
+#   api_username: "XXXXXXXXXXXXXXXXXXXXXXXXXXX"
+#   api_password: "XXXXXXXXXXXXXXXX"
+#   client_cert: "certs/live_api.crt"
+#   client_keys: "certs/live_api.key"
+#   # Don't turn this on in production mode unless you absolutely have to. It'll log people's credit card information
+#   wiredump: false 
+
+# dreamcat4@gmail.com PayPal sandbox
 production:
-  api_username: "XXXXXXXXXXXXXXXXXXXXXXXXXXX"
-  api_password: "XXXXXXXXXXXXXXXX"
-  client_cert: "certs/live_api.crt"
-  client_keys: "certs/live_api.key"
+  api_username: "ps_uk_wpp_api1.dreamcat4.ath.cx"
+  api_password: "DQ5RZUB65ES5KNSJ"
+  client_cert: "certs/sandbox_api.crt"
+  client_keys: "certs/sandbox_api.key"
   # Don't turn this on in production mode unless you absolutely have to. It'll log people's credit card information
   wiredump: false 
 

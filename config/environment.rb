@@ -47,7 +47,7 @@ Rails::Initializer.run do |config|
   end
 
   # Gems
-  config.gem "google4r-checkout"
+  # config.gem "google4r-checkout"
 
   require "potion-extra"
   PotionExtra.in_config.call(config)
